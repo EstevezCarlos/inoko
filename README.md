@@ -1,0 +1,2 @@
+# inoko
+Nerdy, static CMS
