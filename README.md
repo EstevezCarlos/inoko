@@ -1,2 +1,2 @@
-# inoko
+# Inoko 🐗
 Nerdy, static CMS
