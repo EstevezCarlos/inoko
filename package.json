@@ -2,7 +2,7 @@
   "name": "inoko",
   "version": "0.0.1",
   "description": "Nerdy, static CMS",
-  "main": "cli.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
