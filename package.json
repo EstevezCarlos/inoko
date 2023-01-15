@@ -1,0 +1,25 @@
+{
+  "name": "inoko",
+  "version": "0.0.1",
+  "description": "Nerdy, static CMS",
+  "main": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EstevezCarlos/inoko.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/EstevezCarlos/inoko/issues"
+  },
+  "homepage": "https://github.com/EstevezCarlos/inoko#readme",
+  "dependencies": {
+    "markdown-it": "^13.0.1",
+    "markdown-it-highlightjs": "^4.0.1",
+    "mttj": "^0.1.11",
+    "pug": "^3.0.2"
+  }
+}
