@@ -2,7 +2,7 @@
   "name": "inoko",
   "version": "0.0.3",
   "description": "Nerdy, static CMS",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,5 +21,7 @@
     "markdown-it-highlightjs": "^4.0.1",
     "mttj": "^0.1.11",
     "pug": "^3.0.2"
-  }
+  },
+  "bin":{
+    "inoko": "bin/index.js"}
 }
