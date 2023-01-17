@@ -1,6 +1,6 @@
 {
   "name": "inoko",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Nerdy, static CMS",
   "main": "bin/index.js",
   "scripts": {
@@ -22,6 +22,7 @@
     "mttj": "^0.1.11",
     "pug": "^3.0.2"
   },
-  "bin":{
-    "inoko": "bin/index.js"}
+  "bin": {
+    "inoko": "bin/index.js"
+  }
 }
