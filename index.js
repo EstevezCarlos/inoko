@@ -18,19 +18,16 @@ const
 	,md			=	markdownIt({breaks: true}).use(highlightjs, {inline:true})
 	,pugjs		= 	(file,obj) => pug.compileFile(file, {basedir:'./'})(obj)
 
-const tools = {
+module.exports  = {
 
 	md 			:	file => md.render(readMd(file))
 	,content 	:	(component,instance)		=>	md.render(readMd(`./models/content/${component}s/${instance}.md`))
-	,pug		:	(component,obj)				=> 	write(`./public/dist/${component}.html`,pugjs(`./views/${component}.pug`,obj))
-	,pugs		:	(component,instance,obj)	=>	write(`./public/dist/${component}s/${instance}.html`,pugjs(`./views/${component}.pug`,obj))
+	,pugList	:	(component,obj)				=> 	write(`./public/dist/${component}.html`,pugjs(`./views/${component}.pug`,obj))
+	,pugSingle	:	(component,instance,obj)	=>	write(`./public/dist/${component}s/${instance}.html`,pugjs(`./views/${component}.pug`,obj))
+	,model		:	() => { return {
+		
+		...mttj.parseFileSync('./models/data.md')
+		,readMd		:	path => fs.existsSync(path) ? fs.readFileSync(path).toString() : '???'
+		
+	}}
 }
-
-const model = () => { return {
-	
-	...mttj.parseFileSync('./models/data.md')
-	,readMd		:	path => fs.existsSync(path) ? fs.readFileSync(path).toString() : '???'
-	
-}}
-
-module.exports = tools,model
