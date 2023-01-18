@@ -7,25 +7,25 @@ const prompt	=	require("prompt-sync")
 const cmd = {
 
 	cmd: function (kwargs,args) {
-		const a = args[0]
-		const b = args[1]
+		const k = args[0]
+		const v = args[1]
+		const kv = [k,v].toString()
+		if			(	kv == 'new,project'	)	this.newProject(kwargs,args.slice(3))
+		else if 	(	kv == 'fix,project'	)	this.fixProject(kwargs,args.slice(3))
+		else if 	(	kv == 'del,project'	)	say("Inoko CLI doesn't support deleting projects. You can delete all files of the project via system commands if you wish yo discontinue.")
 
-		if			(	[a,b] == ['new','project']	)	this.newProject(kwargs,args.slice(3))
-		else if 	(	[a,b] == ['fix','project']	)	this.fixProject(kwargs,args.slice(3))
-		else if 	(	[a,b] == ['del','project']	)	this.delProject(kwargs,args.slice(3))
-
-		else if		(	[a,b] == ['new','beast']	)	this.newBeast(kwargs,args.slice(3))
-		else if 	(	[a,b] == ['fix','beast']	)	this.fixBeast(kwargs,args.slice(3))
-		else if 	(	[a,b] == ['del','beast']	)	this.delBeast(kwargs,args.slice(3))
+		else if		(	kv == 'new,beast'	)	this.newBeast(kwargs,args.slice(3))
+		else if 	(	kv == 'fix,beast'	)	this.fixBeast(kwargs,args.slice(3))
+		else if 	(	kv == 'del,beast'	)	this.delBeast(kwargs,args.slice(3))
 		
-		else if		(	[a,b] == ['help','new']		)	say('')
-		else if		(	[a,b] == ['help','fix']		)	say('')
-		else if		(	[a,b] == ['help','del']		)	say('')
+		else if		(	kv == 'help,new'	)	say('')
+		else if		(	kv == 'help,fix'	)	say('')
+		else if		(	kv == 'help,del'	)	say('')
 
-		else if		(	[a,b] == ['help','project']	)	say('')
-		else if		(	[a,b] == ['help','beast']	)	say('')
+		else if		(	kv == 'help,project')	say('')
+		else if		(	kv == 'help,beast'	)	say('')
 
-		else											say("Invalid command. Use 'inoko help' to get list of commands.")
+		else									say("Invalid command. Use 'inoko help' to get list of commands.")
 	},
 
 
@@ -42,6 +42,8 @@ const cmd = {
 			}
 			fs.mkdirSync(dir)
 		}
+
+		fs.writeFileSync()
 		say('---------- Directories created -----------');
 	},
 
@@ -60,23 +62,6 @@ const cmd = {
 		}
 		say(`Fixed ${i} directories.`)
 	},
-
-
-
-	//method to delete a project
-	delProject: function (kwargs, args) {
-		let sure = args[0]
-		if ( sure != 'DELETE' ) sure = prompt(`🐗 Type 'DELETE' to delete your project`)
-		if ( sure != 'DELETE' ) return
-		for (const dir of Object.values(kwargs.dirs)) {
-			if (fs.existsSync(dir)) {
-				say(`Deleting ${dir}`)
-				fs.rmSync(dir, {recursive: true, force: true})
-			}
-		}
-		say(`Project deleted`)
-	},
-
 
 
 	//method to create a new beast

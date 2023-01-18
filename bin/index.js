@@ -29,10 +29,8 @@ const dirs			=	{
 
 
 // Command line interface
+cmd.cmd( {dirs:dirs}, process.argv.slice(2) )
 
-const cli	=	( key, kwargs, args ) => say( Object.keys(cmd.cmd).includes(key) ? cmd[key]( kwargs, args) : `Command not found: ${key}.` )
-
-if ( process.argv.length > 3 ) cli.cli(process.argv[2], {dirs}, process.argv.slice(3))
 // if ( process.argv.length > 2 ) cli.help(process.argv[2])
 
 
