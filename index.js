@@ -6,6 +6,7 @@ const highlightjs	=	require('markdown-it-highlightjs')
 const fs			=	require('node:fs')
 
 
+
 const
 
 	fun			=	err => { if (err) throw err }
@@ -18,16 +19,14 @@ const
 	,md			=	markdownIt({breaks: true}).use(highlightjs, {inline:true})
 	,pugjs		= 	(file,obj) => pug.compileFile(file, {basedir:'./'})(obj)
 
+
+
 module.exports  = {
 
-	md 			:	file => md.render(readMd(file))
-	,content 	:	(component,instance)		=>	md.render(readMd(`./models/content/${component}s/${instance}.md`))
-	,pugList	:	(component,obj)				=> 	write(`./public/dist/${component}.html`,pugjs(`./views/${component}.pug`,obj))
-	,pugSingle	:	(component,instance,obj)	=>	write(`./public/dist/${component}s/${instance}.html`,pugjs(`./views/${component}.pug`,obj))
-	,model		:	() => { return {
-		
-		...mttj.parseFileSync('./models/data.md')
-		,readMd		:	path => fs.existsSync(path) ? fs.readFileSync(path).toString() : '???'
-		
-	}}
+	content 	:	( beast,individual		)	=>	markdownIt.render(readMd(`./models/content/${beast}s/${individual}.md`))
+	,pugList	:	( beast,obj				)	=> 	write(`./public/dist/lists/${beast}.html`,pugjs(`./views/${beast}.pug`,obj))
+	,pugSingle	:	( beast,individual,obj	)	=>	write(`./public/dist/singles/${beast}s/${individual}.html`,pugjs(`./views/${beast}.pug`,obj))
+	,readMd		:	( path					)	=>	fs.existsSync(path) ? fs.readFileSync(path).toString() : '???'
+	,model		:	( 						)	=>	mttj.parseFileSync('./models/data.md')
+
 }
