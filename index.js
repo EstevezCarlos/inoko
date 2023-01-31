@@ -23,16 +23,21 @@ const
 
 	,readMd		=	path => fs.existsSync(path) ? fs.readFileSync(path).toString() : '???'
 	,md			=	markdownIt({breaks: true}).use(highlightjs, {inline:true})
-	,pugjs		= 	(file,obj) => pug.compileFile(file, {basedir:'./'})(obj)
+	,pugjs		= 	(file,obj) => pug.compileFile(file, {basedir:'./views'})(obj)
 
 
 
 module.exports  = {
 
-	content 	:	( beast,individual		)	=>	md.render(readMd(`./models/content/${beast}s/${individual}.md`))
-	,pugList	:	( beast,obj				)	=> 	write(`./public/dist/lists/${beast}.html`,pugjs(`./views/lists/${beast}.pug`,obj))
-	,pugSingle	:	( beast,individual,obj	)	=>	write(`./public/dist/singles/${beast}s/${individual}.html`,pugjs(`./views/singles/${beast}.pug`,obj))
-	,pugPage	:	( page,obj				)	=>	write(`./public/${page}.html`,pugjs(`./views/${page}.pug`,obj))
+	content 	:	( beast,individual		)	=>	{
+		const path = `./models/content/${beast}s/${individual}.md`
+		const content = md.render(readMd(path))
+		// console.log(path,'-',content)
+		return content
+	}
+	,pugList	:	( beast,obj				)	=> 	write(	`./public/${beast}s.html`,					pugjs(`./views/beasts/${beast}/list.pug`,	obj)	)
+	,pugLone	:	( beast,individual,obj	)	=>	write(	`./public/${beast}s/${individual}.html`,	pugjs(`./views/beasts/${beast}/lone.pug`,	obj)	)
+	,pugPage	:	( page,obj				)	=>	write(	`./public/${page}.html`,					pugjs(`./views/pages/${page}.pug`,				obj)	)
 	,model		:	( 						)	=>	mttj.parseFileSync('./models/data.md')
 
 }
