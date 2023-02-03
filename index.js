@@ -4,7 +4,7 @@ const path			=	require('path')
 const markdownIt	=	require('markdown-it')
 const highlightjs	=	require('markdown-it-highlightjs')
 const fs			=	require('node:fs')
-// const df			=	require('data-forge')
+const df			=	require('data-forge')
 
 // const data = new df.DataFrame([
 // 	{ name: 'Alice', age: 25, city: 'New York' },
@@ -38,6 +38,12 @@ module.exports  = {
 	,pugList	:	( beast,obj				)	=> 	write(	`./public/${beast}s.html`,					pugjs(`./views/beasts/${beast}/list.pug`,	obj)	)
 	,pugLone	:	( beast,individual,obj	)	=>	write(	`./public/${beast}s/${individual}.html`,	pugjs(`./views/beasts/${beast}/lone.pug`,	obj)	)
 	,pugPage	:	( page,obj				)	=>	write(	`./public/${page}.html`,					pugjs(`./views/pages/${page}.pug`,				obj)	)
-	,model		:	( 						)	=>	mttj.parseFileSync('./models/data.md')
-
+	,model		:	( 						)	=>	{
+		input = mttj.parseFileSync('./models/data.md')
+		output = {}
+		for (const [k,v] of Object.entries(data)) {
+			output[k] = df.DataFrame(input[k])
+		}
+		return output
+	}
 }
