@@ -44,7 +44,7 @@ module.exports  = {
 	,model		:	( 						)	=>	{
 		input = mttj.parseFileSync('./models/data.md')
 		output = {}
-		for (const [k,v] of Object.entries(data)) {
+		for (const [k,v] of Object.entries(input)) {
 			output[k] = df.DataFrame(input[k])
 		}
 		return output
