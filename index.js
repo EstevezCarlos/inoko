@@ -5,7 +5,7 @@ const markdownIt	=	require('markdown-it')
 const highlightjs	=	require('markdown-it-highlightjs')
 const meta			=	require('markdown-it-meta')
 const fs			=	require('node:fs')
-const df			=	require('data-forge')
+const danfo			=	require('danfojs-node')
 
 // const data = new df.DataFrame([
 // 	{ name: 'Alice', age: 25, city: 'New York' },
@@ -45,7 +45,8 @@ module.exports  = {
 		input = mttj.parseFileSync('./models/data.md')
 		output = {}
 		for (const [k,v] of Object.entries(input)) {
-			output[k] = df.DataFrame(input[k])
+			output[k] = new danfo.DataFrame(v)
+			console.log(k,output[k])
 		}
 		return output
 	}
