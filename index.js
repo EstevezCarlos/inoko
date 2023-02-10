@@ -3,6 +3,7 @@ const pug			=	require('pug')
 const path			=	require('path')
 const markdownIt	=	require('markdown-it')
 const highlightjs	=	require('markdown-it-highlightjs')
+const meta			=	require('markdown-it-meta')
 const fs			=	require('node:fs')
 const df			=	require('data-forge')
 
@@ -22,8 +23,10 @@ const
 	}
 
 	,readMd		=	path => fs.existsSync(path) ? fs.readFileSync(path).toString() : '???'
-	,md			=	markdownIt({breaks: true}).use(highlightjs, {inline:true})
 	,pugjs		= 	(file,obj) => pug.compileFile(file, {basedir:'./views'})(obj)
+	,md			=	markdownIt({breaks: true})
+		.use(highlightjs, {inline:true})
+		.use(meta)
 
 
 
