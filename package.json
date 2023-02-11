@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/EstevezCarlos/inoko#readme",
   "dependencies": {
-    "danfojs-node": "^1.1.2",
     "data-forge": "^1.9.6",
     "markdown-it": "^13.0.1",
     "markdown-it-highlightjs": "^4.0.1",
