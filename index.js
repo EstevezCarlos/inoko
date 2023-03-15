@@ -29,9 +29,9 @@ module.exports  = {
 		const content = md.render(readMd(path))
 		return content
 	}
-	,pugList	:	( beast,obj				)	=> 	write(	`./public/${beast}s.html`,					pugjs(`./views/beasts/${beast}/list.pug`,	obj)	)
-	,pugLone	:	( beast,individual,obj	)	=>	write(	`./public/${beast}s/${individual}.html`,	pugjs(`./views/beasts/${beast}/lone.pug`,	obj)	)
-	,pugPage	:	( page,obj				)	=>	write(	`./public/${page}.html`,					pugjs(`./views/pages/${page}.pug`,				obj)	)
+	,pugList	:	( beast,obj				)	=> 	write(	`./public/${beast}s.html`,					pugjs(`./views/beasts/${beast}/list.pug`,	{ model:obj									})	)
+	,pugLone	:	( beast,individual,obj	)	=>	write(	`./public/${beast}s/${individual}.html`,	pugjs(`./views/beasts/${beast}/lone.pug`,	{ model:obj, $:obj[`${beast}s`][individual]	})	)
+	,pugPage	:	( page,obj				)	=>	write(	`./public/${page}.html`,					pugjs(`./views/pages/${page}.pug`,			{ model:obj									})	)
 	// ,model		:	( 						)	=>	mttj.parseFileSync('./models/data.md')
 	,model		:	()							=>	mttj.parseDirSync('./models/')
 }
