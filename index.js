@@ -16,7 +16,7 @@ const
 
 	,readMd		=	path => fs.existsSync(path) ? fs.readFileSync(path).toString() : '???'
 	,pugjs		= 	(file,obj) => pug.compileFile(file, {basedir:'./views'})(obj)
-	,md			=	markdownIt({breaks: true, html: true, tabSize: 4})
+	,md			=	markdownIt({breaks: true, html: true})
 		.use(highlightjs, {inline:true})
 		.use(meta)
 
