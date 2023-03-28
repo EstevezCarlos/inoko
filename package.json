@@ -1,6 +1,6 @@
 {
   "name": "inoko",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "Nerdy, static CMS",
   "main": "index.js",
   "scripts": {
