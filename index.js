@@ -34,4 +34,5 @@ module.exports  = {
 	,pugPage	:	( page,obj				)	=>	write(	`./public/${page}.html`,					pugjs(`./views/pages/${page}.pug`,				obj						)	)
 	// ,model		:	( 						)	=>	mttj.parseFileSync('./models/data.md')
 	,model		:	()							=>	mttj.parseDirSync('./models/')
+	,say		:	(err, msg =''			)	=>	console.log(`🐗 ⇒ ${err ? err : msg}`)
 }
