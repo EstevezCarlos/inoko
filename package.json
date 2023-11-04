@@ -21,7 +21,7 @@
     "markdown-it": "^13.0.1",
     "markdown-it-highlightjs": "^4.0.1",
     "markdown-it-meta": "^0.0.1",
-    "mttj": "^0.1.15",
+    "mttj": "^0.1.16",
     "prompt-sync": "^4.2.0",
     "pug": "^3.0.2",
     "stylus": "^0.59.0"
