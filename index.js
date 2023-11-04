@@ -18,7 +18,7 @@ const md = markdownIt({ breaks: true, html: true })
  * @param  {...any} args Things to display
  */
 function λ(...args) {
-    console.log(`🐗✔ ⇒ {`, ...args, `}`)
+    console.log(`🐗: 👍 ⇒ {`, ...args, `}`)
 }
 
 
@@ -27,7 +27,7 @@ function λ(...args) {
  * @param  {...any} args Things to display
  */
 function Λ(...args) {
-    console.log(`🐗:❌ ⇒ {`, ...args, `}`)
+    console.log(`🐗: ❌ ⇒ {`, ...args, `}`)
 }
 
 /**
@@ -53,17 +53,16 @@ function write(out, str) {
 function pug2html(file, out, obj) {
     try {
         write(`./public/${out}.html`, pugjs(`./views/${file}.pug`, obj))
+        λ(`Compiled ${file}`)
     } catch (error) {
         let locals_str = ''
         for (const key in obj) {
             if (Object.hasOwnProperty.call(obj, key)) {
-                locals_str += `\n\t${key}:${obj[key]}`
+                locals_str += ` ${key} `
             }
         }
         Λ(`Can not compile ${file} into ${out}, with locals: ${locals_str}`)
         
-    } finally {
-        λ(`Compiled ${file}`)
     }
     
 }
