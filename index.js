@@ -55,7 +55,7 @@ function write(out, str) {
         fs.writeFile(out, str, fun)
     }
     catch(Error){
-        Λ(`write() cannot write to a file <${out}>`)
+        Λ(`write() cannot write to a file <${out}> with string:\n-----------------------------------------------\n${str}\n-----------------------------------------------`)
     }
 
 }
