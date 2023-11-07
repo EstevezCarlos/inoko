@@ -61,7 +61,7 @@ function pug2html(file, out, obj) {
                 locals_str += ` ${key} `
             }
         }
-        Λ(`Can not compile ${file} into ${out}, with locals: ${locals_str}`)
+        Λ(`Can not compile ./views/${file}.pug into ./public/${out}.html, with locals: ${locals_str}`)
         
     }
     
