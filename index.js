@@ -49,13 +49,13 @@ function write(out, str) {
         fs.mkdirSync(path.dirname(out), { recursive: true, flag: 'w' });
     }
     catch(Error){
-        Λ('write() cannot create directory')
+        Λ(`write() cannot create directory <${path.dirname(out)}>`)
     }
     try {
         fs.writeFile(out, str, fun)
     }
     catch(Error){
-        Λ('write() cannot write to a file')
+        Λ(`write() cannot write to a file <${out}>`)
     }
 
 }
