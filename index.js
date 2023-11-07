@@ -45,8 +45,19 @@ function fun(err) {
  * @param {string} str string content
  */
 function write(out, str) {
-    fs.mkdirSync(path.dirname(out), { recursive: true, flag: 'w' });
-    fs.writeFile(out, str, fun)
+    try {
+        fs.mkdirSync(path.dirname(out), { recursive: true, flag: 'w' });
+    }
+    catch(Error){
+        Λ('write() cannot create directory')
+    }
+    try {
+        fs.writeFile(out, str, fun)
+    }
+    catch(Error){
+        Λ('write() cannot write to a file')
+    }
+
 }
 
 
